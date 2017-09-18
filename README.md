@@ -20,3 +20,6 @@ This module allows you to install the Kali Nethunter chroot systemlessly.
 * Load "Kali Chroot Manager" and click "Remove Chroot" (Reboot and Remove Chroot)
 * Uninstall Kali Nethunter Magisk module (Reboot)
 * Manually uninstall Nethunter, Kali Terminal and Kali VNC apps
+
+## Note
+Ignore "Failure [DELETE_FAILED_INTERNAL_ERROR]" log line when installing this Magisk Module. Module attempts to uninstall Nethunter APKs before proceeding. This error occurs when they are not already installed.
