@@ -1,7 +1,7 @@
-id=template
-name=Template Module
-version=v1
-versionCode=1
-author=topjohnwu
-description=A short description
-template=1400
+id=KaliNethunter
+name=Magisk Kali Nethunter
+version=v0.20
+versionCode=0.20
+author=atarii
+description=Kali Nethunter for Magisk
+template=4
