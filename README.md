@@ -4,7 +4,7 @@ This module allows you to install the Kali Nethunter chroot systemlessly.
 
 ## Instructions:
 * Install this Magisk Module
-* Run Nethunter app (allow Root-related permissions)
+* Run Nethunter app - allow 7(!) Root-related permissions prompts
 * Click "Kali Chroot Manager"
 * Click "Install Kali Chroot"
 * Install the full Kali package
