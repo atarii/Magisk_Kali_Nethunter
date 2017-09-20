@@ -6,9 +6,6 @@ MODDIR=${0%/*}
 # This script will be executed in late_start service mode
 # More info in the main Magisk thread
 
-# ln -s `which busybox` $MODDIR/system/sbin/busybox_nh
-
-# Symlink to Nethunter app
 log -p i -t userinit "Symlinking Kali boot scripts"
 ln -s /data/data/com.offsec.nethunter/files/scripts/bootkali $MODDIR/system/bin/bootkali
 ln -s /data/data/com.offsec.nethunter/files/scripts/bootkali_init $MODDIR/system/bin/bootkali_init
@@ -16,7 +13,6 @@ ln -s /data/data/com.offsec.nethunter/files/scripts/bootkali_login $MODDIR/syste
 ln -s /data/data/com.offsec.nethunter/files/scripts/bootkali_bash $MODDIR/system/bin/bootkali_bash
 ln -s /data/data/com.offsec.nethunter/files/scripts/killkali $MODDIR/system/bin/killkali
 
-# Magisk init.d support
 for i in `find /data/data/com.offsec.nethunter/files/etc/init.d/*`; do
 	log -p i -t "Nethunter Boot" "Executing $i"
 	su -c $i

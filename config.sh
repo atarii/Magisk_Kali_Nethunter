@@ -2,30 +2,24 @@
 #
 # Magisk Module Template Config Script
 # by topjohnwu
-# 
+#
 ##########################################################################################
 ##########################################################################################
-# 
+#
 # Instructions:
-# 
+#
 # 1. Place your files into system folder (delete the placeholder file)
 # 2. Fill in your module's info into module.prop
 # 3. Configure the settings in this file (common/config.sh)
 # 4. For advanced features, add shell commands into the script files under common:
 #    post-fs-data.sh, service.sh
 # 5. For changing props, add your additional/modified props into common/system.prop
-# 
+#
 ##########################################################################################
 
 ##########################################################################################
-# Defines
+# Configs
 ##########################################################################################
-
-# NOTE: This part has to be adjusted to fit your own needs
-
-# This will be the folder name under /magisk
-# This should also be the same as the id in your module.prop to prevent confusion
-MODID=KaliNethunter
 
 # Set to true if you need to enable Magic Mount
 # Most mods would like it to be enabled
@@ -47,6 +41,9 @@ LATESTARTSERVICE=true
 # Set what you want to show when installing your mod
 
 print_modname() {
+  # ui_print "*******************************"
+  # ui_print "     Magisk Module Template    "
+  # ui_print "*******************************"
   ui_print "##################################################"
   ui_print "##                                              ##"
   ui_print "##  88      a8P         db        88        88  ##"
@@ -58,7 +55,7 @@ print_modname() {
   ui_print "##  88     '88.   d8'        '8b  88        88  ##"
   ui_print "##  88       Y8b d8'          '8b 888888888 88  ##"
   ui_print "##                                              ##"
-  ui_print "############# NetHunter (Systemless) #############"
+  ui_print "############# Magisk Kali NetHunter #############"
 }
 
 ##########################################################################################
@@ -87,16 +84,11 @@ REPLACE="
 # Permissions
 ##########################################################################################
 
-# NOTE: This part has to be adjusted to fit your own needs
-
 set_permissions() {
-  # Default permissions, don't remove them
-  set_perm_recursive  $MODPATH  0  0  0755  0644
-
   # Only some special files require specific permissions
   # The default permissions should be good enough for most cases
 
-  # Some templates if you have no idea what to do:
+  # Here are some examples for the set_perm functions:
 
   # set_perm_recursive  <dirname>                <owner> <group> <dirpermission> <filepermission> <contexts> (default: u:object_r:system_file:s0)
   # set_perm_recursive  $MODPATH/system/lib       0       0       0755            0644
@@ -108,8 +100,8 @@ set_permissions() {
 
   # The following is default permissions, DO NOT remove
   set_perm_recursive  $MODPATH  0  0  0755  0644
+  set_perm_recursive  $MODPATH/system/xbin       0       0       0777            0777
   set_perm_recursive  $MODPATH/system/bin       0       0       0777            0777
   set_perm_recursive  $MODPATH/system/etc       0       0       0777            0777
   set_perm_recursive  $MODPATH/system/sbin       0       0       0777            0777
-  set_perm_recursive  $MODPATH/system/xbin       0       0       0777            0777
 }
