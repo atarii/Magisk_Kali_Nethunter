@@ -1,7 +1,7 @@
 id=kali_nethunter
 name=Kali Nethunter
-version=v1
-versionCode=1
+version=v1.2
+versionCode=1.2
 author=atarii
 description=Kali Nethunter for Magisk
 template=1400
