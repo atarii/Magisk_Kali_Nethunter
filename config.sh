@@ -10,10 +10,9 @@
 #
 # 1. Place your files into system folder (delete the placeholder file)
 # 2. Fill in your module's info into module.prop
-# 3. Configure the settings in this file (common/config.sh)
-# 4. For advanced features, add shell commands into the script files under common:
-#    post-fs-data.sh, service.sh
-# 5. For changing props, add your additional/modified props into common/system.prop
+# 3. Configure the settings in this file (config.sh)
+# 4. If you need boot scripts, add them into common/post-fs-data.sh or common/service.sh
+# 5. Add your additional or modified system properties into common/system.prop
 #
 ##########################################################################################
 
@@ -63,10 +62,8 @@ print_modname() {
 ##########################################################################################
 
 # List all directories you want to directly replace in the system
-# By default Magisk will merge your files with the original system
-# Directories listed here however, will be directly mounted to the correspond directory in the system
+# Check the documentations for more info about how Magic Mount works, and why you need this
 
-# You don't need to remove the example below, these values will be overwritten by your own list
 # This is an example
 REPLACE="
 /system/app/Youtube
@@ -75,7 +72,7 @@ REPLACE="
 /system/framework
 "
 
-# Construct your own list here, it will overwrite the example
+# Construct your own list here, it will override the example above
 # !DO NOT! remove this if you don't need to replace anything, leave it empty as it is now
 REPLACE="
 "
@@ -104,4 +101,37 @@ set_permissions() {
   set_perm_recursive  $MODPATH/system/bin       0       0       0777            0777
   set_perm_recursive  $MODPATH/system/etc       0       0       0777            0777
   set_perm_recursive  $MODPATH/system/sbin       0       0       0777            0777
+}
+
+##########################################################################################
+# Custom Functions
+##########################################################################################
+
+# This file (config.sh) will be sourced by the main flash script after util_functions.sh
+# If you need custom logic, please add them here as functions, and call these functions in
+# update-binary. Refrain from adding code directly into update-binary, as it will make it
+# difficult for you to migrate your modules to newer template versions.
+# Make update-binary as clean as possible, try to only do function calls in it.
+
+install_apks() {
+  mkdir $INSTALLER/files
+  unzip -o "$ZIP" 'files/*' -d $INSTALLER 2>/dev/null
+  if ls /data/data/com.offsec.nethunter* 1> /dev/null 2>&1; then
+    ui_print "- Uninstalling Nethunter Application apk"
+    pm uninstall com.offsec.nethunter
+  fi
+  ui_print "- Installing Nethunter Application apk"
+  pm install $INSTALLER/files/nethunter.apk
+  if ls /data/data/com.offsec.nhterm* 1> /dev/null 2>&1; then
+    ui_print "- Uninstalling Nethunter Terminal"
+    pm uninstall com.offsec.nhterm
+  fi
+  ui_print "- Installing Nethunter Terminal apk"
+  pm install $INSTALLER/files/Term-nh.apk
+  if ls /data/data/com.offsec.nhvnc* 1> /dev/null 2>&1; then
+    ui_print "- Uninstalling Nethunter VNC"
+    pm uninstall com.offsec.nhvnc
+  fi
+  ui_print "- Installing Nethunter VNC apk"
+  pm install $INSTALLER/files/VNC-nh.apk
 }
