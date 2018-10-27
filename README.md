@@ -4,6 +4,7 @@ This module allows you to install the Kali Nethunter chroot systemlessly - see h
 ![Kali NetHunter](https://raw.githubusercontent.com/offensive-security/kali-nethunter/master/images/nethunter-git-logo.png)
 
 ## Installation instructions:
+
 * Install attached Magisk Module
 * Reboot device
 * Run Nethunter app - allow 7(!) Root-related permissions prompts and wait for initialisation
@@ -15,11 +16,13 @@ This module allows you to install the Kali Nethunter chroot systemlessly - see h
 * Enjoy!
 
 ## Not Working:
+
 Anything which requires the custom kernel/ramdisk will not work out of the box. This includes:
 * Wi-Fi injection (requires custom kernel/ramdisk)
 * HID Interfaces (BadUSB/Duckhunter etc. - also requires custom kernel/ramdisk)
 
 ## Uninstall:
+
 To remove this fully:
 * Load "Kali Chroot Manager" in the Nethunter app and click "Remove Chroot" (Reboot and Remove Chroot)
 * Uninstall Kali Nethunter Magisk module (Reboot)
@@ -27,4 +30,5 @@ To remove this fully:
 * Remove any leftover files - /sdcard/nh_files, /sdcard/nh_install_*.log
 
 ## Notes
+
 This is an unofficial build. Credits to all the Offensive Security team and those working on the Nethunter project.
